@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta
+      name="description"
+      content="Web site created using create-react-app"
+    />
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <!--
+      manifest.json provides metadata used when your web app is installed on a
+      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
+    -->
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <!--
+      Notice the use of %PUBLIC_URL% in the tags above.
+      It will be replaced with the URL of the `public` folder during the build.
+      Only files inside the `public` folder can be referenced from the HTML.
+
+      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
+      work correctly both with client-side routing and a non-root public URL.
+      Learn how to configure a non-root public URL by running `npm run build`.
+    -->
+    <title>React App</title>
+
+    <style>
+
+
+      table{
+        border: blue;
+      }
+      .tableclass 
+        {
+            width: 97%;
+            margin-left: 30px;
+            margin-right: 30px;
+            table-layout: fixed;
+            border: 1px solid #dadce0;
+            border-radius: 8px;
+            padding: 16px 0px 38px 16px;
+            background-color: white;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            margin-bottom: 70px;
+        }
+
+        .tableclass tbody 
+        {
+            display: block;
+            width: 100%;
+            overflow: auto;
+            height: 700px;
+        }
+
+        .tableclass thead tr 
+        {
+            display: inline-block;
+        }
+
+        .tableclass thead
+        {
+            font-size: larger;
+        }
+
+        .tableclass td 
+        {
+            text-align: left;
+            width: 1000px;
+        }
+
+        .tableclass td img
+        {
+            padding-left: 5px;
+        }
+
+        .tableclass th 
+        {
+            text-align: left;
+            width: 1000px;
+        }
+
+        tbody tr:nth-child(odd)
+        {
+           background-color: #f2f2f2;
+        }
+
+        tbody tr:hover
+        {
+            background-color: #737373;
+            color: white;
+        }
+
+        option{
+          background-color: #f4f4f4;
+        }
+
+
+
+        #searchtab{
+          height: 20px;
+          width:600px;
+          margin-left: 30px;
+          margin-right: 20px;
+          padding: 10px;
+          border: 1px solid #f4f4f4;
+          box-shadow: 1px 1px 5px;
+          border-radius: 10px;
+          font-family: Arial, Helvetica, sans-serif;
+        
+        }
+        
+        #selectdropdown{
+          padding: 12px;
+          border-radius: 10px;
+          box-shadow: 1px 1px 5px;
+          background-color: white;
+          font-family: Arial, Helvetica, sans-serif;
+        }
+
+        #selectdropdown:focus, #searchtab:focus{
+          outline: none;
+        }
+
+    </style>
+    
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+    <!--
+      This HTML file is a template.
+      If you open it directly in the browser, you will see an empty page.
+
+      You can add webfonts, meta tags, or analytics to this file.
+      The build step will place the bundled scripts into the <body> tag.
+
+      To begin the development, run `npm start` or `yarn start`.
+      To create a production bundle, use `npm run build` or `yarn build`.
+    -->
+  </body>
+</html>
