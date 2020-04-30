@@ -1,0 +1,601 @@
+{% load static %}
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>REACT!!</title>
+
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/nav.css' %}">
+
+
+
+    <style>
+
+
+        body {
+            margin: 0px 0px 8px 0px;
+            background-color: #f4f4f4;
+        }
+
+
+        #innercontainer {
+        }
+
+        #outercontainer {
+            display:block;
+/*            background-color: red;
+*/            margin-left: 20px;
+            margin-right: 33%;
+        }
+
+        .tableclass 
+        {
+            width: 100%;
+            table-layout: fixed;
+            border: 1px solid #dadce0;
+            border-radius: 8px;
+            padding: 16px 0px 38px 16px;
+            background-color: white;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+
+        }
+
+        .tableclass tbody 
+        {
+            display: block;
+            width: 100%;
+            overflow: auto;
+            height: 700px;
+        }
+
+        .tableclass thead tr 
+        {
+            display: inline-block;
+        }
+
+        .tableclass thead
+        {
+            font-size: larger;
+        }
+
+        .tableclass td 
+        {
+            text-align: left;
+            width: 1000px;
+        }
+
+        .tableclass td img
+        {
+            padding-left: 5px;
+        }
+
+        .tableclass th 
+        {
+            text-align: left;
+            width: 1000px;
+        }
+
+        tbody tr:nth-child(odd)
+        {
+           background-color: #f2f2f2;
+        }
+
+        tbody tr:hover
+        {
+            background-color: #737373;
+            color: white;
+        }
+        table
+        {
+        }
+
+        #myInput 
+        {
+            background-position: 10px 12px; /* Position the search icon */
+            background-repeat: no-repeat; /* Do not repeat the icon image */
+            width: 100%;
+            margin-bottom: 12px;
+            border-radius: 10px;
+            margin-right : 33%;
+            font-size: 16px; 
+            padding: 12px 20px 12px 40px; 
+            border: 1px solid #ddd;
+            border-radius: 10px;
+        }
+
+
+
+        #arrows{
+            display: inline-block;
+            padding: 0px;
+        }
+
+
+         #arrow-up {
+        width: 0; 
+        height: 0; 
+        border-left: 5px solid transparent;
+        border-right: 5px solid transparent;
+        
+        border-bottom: 5px solid black;
+        padding: 0px;
+        }
+
+        #arrow-down {
+        width: 0; 
+        height: 0; 
+        border-left: 5px solid transparent;
+        border-right: 5px solid transparent;
+        
+        border-top: 5px solid black;
+        padding: 0px;
+        }
+
+
+        #searchtab{
+            width:400px;
+            height: 30px;
+            margin-right: 10px;
+        }
+
+
+
+        #selectdropdown{
+            width:150px;
+            height: 30px;
+        }
+
+
+
+    </style>
+
+</head>
+
+<body>
+
+    <!--thi is only the top bar-->
+    {% include "navbar.html" %}
+
+
+    <div id='outercontainer'>
+            <!-- <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for Country"> -->
+        <div id='innercontainer'>
+        </div>
+    </div>
+
+    <script type="text/babel">
+
+        class Location extends React.Component {
+            render() {
+                var locstyle = {
+                    paddingTop: 12,
+                    paddingRight: 16,
+                    paddingBottom: 12,
+                    paddingLeft: 0,
+                    display: "inlineBlock",
+                    width : "800px"
+                }
+
+                var logostyle = {
+                    maxHeight: "16px",
+                    minHeight: "16px",
+                    maxWidth: "16px",
+                    minWidth: "16px",
+                    marginRight: "12px"
+                }
+
+                return (
+                    <td style={locstyle}>
+                        <img style={logostyle} src={this.props.flag} onError={(e)=>{e.target.onerror = null; e.target.src="{% static 'world.jpeg' %}"}} />
+                        {this.props.loc}
+                    </td>
+                )
+            }
+        }
+
+        class Confirmed extends React.Component {
+            render() {
+                var confstyle = {
+                    paddingTop: 12,
+                    paddingRight: 16,
+                    paddingBottom: 12,
+                    paddingLeft: 16,
+                    // display:"inlineBlock",    
+                }
+
+                return (
+                    <td style={confstyle}>
+                        {this.props.conf}
+                    </td>
+                )
+            }
+        }
+
+        class Cases_per1M extends React.Component {
+            render() {
+                var casesstyle = {
+                    paddingTop: 12,
+                    paddingRight: 16,
+                    paddingBottom: 12,
+                    paddingLeft: 16,
+                    // display:"inlineBlock"    
+                }
+
+                return (
+                    <td style={casesstyle}>
+                        {this.props.cpm}
+                    </td>
+                )
+            }
+        }
+
+        class Recovered extends React.Component {
+            render() {
+                var recoveredstyle = {
+                    paddingTop: 12,
+                    paddingRight: 16,
+                    paddingBottom: 12,
+                    paddingLeft: 16,
+                    // display:"inlineBlock"    
+                }
+
+                return (
+                    <td style={recoveredstyle}>
+                        {this.props.r}
+                    </td>
+                )
+            }
+        }
+
+        class Deaths extends React.Component {
+            render() {
+                var deathsstyle = {
+                    paddingTop: 12,
+                    paddingRight: 16,
+                    paddingBottom: 12,
+                    paddingLeft: 16,
+                    // display:"inlineBlock"                   
+                }
+
+                return (
+                    <td style={deathsstyle}>
+                        {this.props.d}
+                    </td>
+                )
+            }
+        }
+
+
+
+
+        class TableComponent extends React.Component {
+            render() {
+
+                var dataRows = this.props.data;
+                // var dataColumns=['cname','ccases','ccasespm','totalrecovered','totaldeaths']
+
+                var rowstyle = {
+                    borderTop: "1px solid",
+                    display: "inlineBlock"
+                }
+
+
+                var tableHeaders = (
+                    <thead>
+                        <tr>
+                            <th> Locations </th>
+                            <th id="cases"> Confirmed <span id="arrows"><span id="arrow-up"></span>
+                                                        <span id="arrow-down"></span></span></th>
+                            <th> Cases per 1M people   </th>
+                            <th> Recovered </th>
+                            <th> Deaths </th>
+
+                        </tr>
+                    </thead>
+                );
+
+                var tableBody = dataRows.map(function (row) {
+                    return (
+
+                        <tr style={rowstyle}>
+                            <Location loc={row.cname} flag={row.flaglogo} />
+                            <Confirmed conf={row.ccases} />
+                            <Cases_per1M cpm={row.ccasespm} />
+                            <Recovered r={row.totalrecovered} />
+                            <Deaths d={row.totaldeaths} />
+
+                        </tr>
+                    );
+                });
+
+                return (<table id="MyTable" class='tableclass'>
+                    {tableHeaders}
+                    <tbody>
+                        {tableBody}
+                    </tbody>
+                </table>
+
+                );
+            }
+        }
+
+
+
+
+
+class GlobalSearchComponent extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      filteredData: [],
+      columnSearch: "",
+      searchInput: ""
+    };
+  }
+
+  handleChange = event => {
+    const val = event.target.value;
+    this.setState({ searchInput: val }, () => this.globalSearch());
+    this.props.handleSetSearchInput(val);
+  };
+
+  globalSearch = () => {
+    const { searchInput, columnSearch } = this.state;
+    let filteredData = this.props.data.filter(value => {
+      if (columnSearch) {
+        return value[columnSearch]
+          .toString()
+          .toLowerCase()
+          .includes(searchInput.toLowerCase());
+      }
+      return (
+        value.cname.toLowerCase().includes(searchInput.toLowerCase())
+      );
+    });
+
+    this.props.handleSetFilteredData(filteredData);
+  };
+
+  setColumnSearch = e => {
+    this.setState({ columnSearch: e.target.value }, () => this.globalSearch());
+  };
+
+  render() {
+    const { columns } = this.props;
+    const { columnSearch } = this.state;
+
+    return (
+      <div>
+        <br />
+        <input type="text"
+          name="searchInput"
+          value={this.state.searchInput || ""}
+          onChange={this.handleChange}
+          label="Search"
+          id="searchtab"
+        />
+        <select id="selectdropdown"
+          onChange={e => {
+            e.persist();
+            this.setColumnSearch(e);
+          }}
+          value={columnSearch}
+        >
+          <option value=""> All columns</option>
+          {columns.map(col => {
+            return <option value={col.accessor}>{col.Header}</option>;
+          })}
+        </select>
+        <br />
+        <br />
+      </div>
+    );
+  }
+}
+
+
+
+        class App extends React.Component {
+        constructor(props) {
+            super(props);
+            this.state = {
+            data: [],
+            filteredData: [],
+            columns: [],
+            searchInput: ""
+            };
+        }
+
+        componentDidMount() {
+            this.getData();
+            this.getColumns();
+        }
+
+        getColumns = () => {
+            let columns = [
+            {
+                Header: "Locations",
+                accessor: "cname",
+                sortable: false,
+                show: true,
+                displayValue: "Locations"
+            },
+            {
+                Header: "Confirmed",
+                accessor: "ccases",
+                sortable: false,
+                show: true,
+                displayValue: "Confirmed"
+            },
+            {
+                Header: "Cases per 1M people",
+                accessor: "ccasespm",
+                sortable: false,
+                show: true,
+                displayValue: "Cases per 1M people"
+            },
+            {
+                Header: "Recovered",
+                accessor: "totalrecovered",
+                sortable: false,
+                show: true,
+                displayValue: "Recovered"
+            },
+            {
+                Header: "Deaths",
+                accessor: "totaldeaths",
+                sortable: false,
+                show: true,
+                displayValue: "Deaths"
+            }
+            ];
+            this.setState({ columns });
+        };
+
+        getData = () => {
+            let data =rowData;
+            this.setState({ data });
+        };
+
+        handleSetData = data => {
+            console.log(data);
+            this.setState({ data });
+        };
+
+        handleSetFilteredData = filteredData => {
+            this.setState({ filteredData });
+        };
+
+        handleSetSearchInput = searchInput => {
+            this.setState({ searchInput });
+        };
+
+        render() {
+            let { data, filteredData, columns, searchInput } = this.state;
+            const dataToDisplay = searchInput.length ? filteredData : data;
+            return (
+            <div>
+                <GlobalSearchComponent
+                data={this.state.data}
+                columns={this.state.columns}
+                handleSetFilteredData={this.handleSetFilteredData}
+                handleSetSearchInput={this.handleSetSearchInput}
+                />
+                <TableComponent data={dataToDisplay}/>
+            </div>
+            );
+        }
+        }
+
+
+
+        var rowData = []
+        var destination = document.querySelector("#innercontainer")
+        {% for item in query_results %}
+        var san = {
+            'cname': "{{item.country_name}}",
+            'ccases': "{{ item.confirmed_cases }}",
+            'ccasespm': "{{ item.cases_per_million }}",
+            'totalrecovered': "{{item.total_recovered}}",
+            'totaldeaths': "{{item.total_deaths}}",
+            'flaglogo': "{{item.url}}"
+        }
+        rowData.push(san)
+        {% endfor %}
+
+
+        // ReactDOM.render(
+        //     <TableComponent data={rowData} />,
+        //     destination
+        // );
+
+
+        const rootElement = document.getElementById("root");
+        ReactDOM.render(<App />, destination);
+
+
+
+    </script>
+    <script>
+   
+    window.onload = function(){
+    var a = document.getElementById("arrow-up");
+    var b = document.getElementById("arrow-down");
+        
+    var c=document.getElementById("cases");
+
+
+    c.onclick=sortTable;
+    function sortTable() {
+      var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+      table = document.getElementById("MyTable");
+      switching = true;
+      //Set the sorting direction to ascending:
+      dir = "asc"; 
+      
+      a.style.display = "block";
+        b.style.display="none";
+      /*Make a loop that will continue until
+      no switching has been done:*/
+      while (switching) {
+        //start by saying: no switching is done:
+        switching = false;
+        rows = table.rows;
+        /*Loop through all table rows (except the
+        first, which contains table headers):*/
+        for (i = 1; i < (rows.length - 1); i++) {
+          //start by saying there should be no switching:
+          shouldSwitch = false;
+          /*Get the two elements you want to compare,
+          one from current row and one from the next:*/
+          x = rows[i].getElementsByTagName("td")[1];
+          y = rows[i + 1].getElementsByTagName("td")[1];
+          /*check if the two rows should switch place,
+          based on the direction, asc or desc:*/
+          if (dir == "asc") {
+            
+            if (parseInt(x.innerHTML)> parseInt(y.innerHTML)) {
+              //if so, mark as a switch and break the loop:
+              shouldSwitch= true;
+              break;
+            }
+          } else if (dir == "desc") {
+              
+        
+            if (parseInt(x.innerHTML) <parseInt(y.innerHTML)) {
+              //if so, mark as a switch and break the loop:
+              shouldSwitch = true;
+              break;
+            }
+          }
+        }
+        if (shouldSwitch) {
+          /*If a switch has been marked, make the switch
+          and mark that a switch has been done:*/
+          rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+          switching = true;
+          //Each time a switch is done, increase this count by 1:
+          switchcount ++;      
+        } else {
+          /*If no switching has been done AND the direction is "asc",
+          set the direction to "desc" and run the while loop again.*/
+          if (switchcount == 0 && dir == "asc") {
+            a.style.display = "none";
+            b.style.display = "block";
+            dir = "desc";
+            switching = true;
+          }
+        }
+      }
+    }
+        };
+    </script>
+
+
+</body>
+
+</html>

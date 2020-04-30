@@ -1,0 +1,33 @@
+*{
+	margin: 0px;
+	padding: 0px;
+}
+
+
+#navbar{
+			background-color:#1e847f;
+			margin: 0px;
+			padding: 20px;
+			border-bottom: 1px solid black;
+			margin-bottom: 20px;
+			position: sticky;
+    		top: 0px;
+		}
+
+
+.navele:hover{
+			background-color: #2F4F4F
+		}
+
+.navele{
+			margin: 0px;
+			padding: 20px;
+			font-family: 'Poppins' , sans-serif;
+			font-size: 20px;
+			font-weight: bold;
+			
+}
+.link{
+			text-decoration:none;
+			color:#f4f4f4
+		}

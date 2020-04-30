@@ -1,0 +1,312 @@
+{% load static %}
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>REACT!!</title>
+
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/nav.css' %}">
+
+
+
+    <style>
+
+
+        body {
+            margin: 0px 0px 8px 0px;
+            background-color: #f4f4f4;
+        }
+
+
+        #innercontainer {
+        }
+
+        #outercontainer {
+            display:block;
+/*            background-color: red;
+*/            margin-left: 20px;
+            margin-right: 33%;
+        }
+
+        .tableclass 
+        {
+            width: 100%;
+            table-layout: fixed;
+            border: 1px solid #dadce0;
+            border-radius: 8px;
+            padding: 16px 0px 38px 16px;
+            background-color: white;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+
+        }
+
+        .tableclass tbody 
+        {
+            display: block;
+            width: 100%;
+            overflow: auto;
+            height: 700px;
+        }
+
+        .tableclass thead tr 
+        {
+            display: inline-block;
+        }
+
+        .tableclass thead
+        {
+            font-size: larger;
+        }
+
+        .tableclass td 
+        {
+            text-align: left;
+            width: 1000px;
+        }
+
+        .tableclass td img
+        {
+            padding-left: 5px;
+        }
+
+        .tableclass th 
+        {
+            text-align: left;
+            width: 1000px;
+        }
+
+        tbody tr:nth-child(odd)
+        {
+           background-color: #f2f2f2;
+        }
+
+        tbody tr:hover
+        {
+            background-color: #737373;
+            color: white;
+        }
+        table
+        {
+        }
+
+        #myInput 
+        {
+            background-position: 10px 12px; /* Position the search icon */
+            background-repeat: no-repeat; /* Do not repeat the icon image */
+            width: 100%;
+            margin-bottom: 12px;
+            border-radius: 10px;
+            margin-right : 33%;
+            font-size: 16px; 
+            padding: 12px 20px 12px 40px; 
+            border: 1px solid #ddd;
+        }
+
+
+
+
+    </style>
+
+</head>
+
+<body>
+
+    <!--thi is only the top bar-->
+    {% include "navbar.html" %}
+
+
+    <div id='outercontainer'>
+            <!-- <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for Country"> -->
+        <div id='innercontainer'>
+        </div>
+    </div>
+
+    <script type="text/babel">
+
+        class Location extends React.Component {
+            render() {
+                var locstyle = {
+                    paddingTop: 12,
+                    paddingRight: 16,
+                    paddingBottom: 12,
+                    paddingLeft: 0,
+                    display: "inlineBlock",
+                    width : "800px"
+                }
+
+                var logostyle = {
+                    maxHeight: "16px",
+                    minHeight: "16px",
+                    maxWidth: "16px",
+                    minWidth: "16px",
+                    marginRight: "12px"
+                }
+
+                return (
+                    <td style={locstyle}>
+                        <img style={logostyle} src={this.props.flag} />
+                        {this.props.loc}
+                    </td>
+                )
+            }
+        }
+
+        class Confirmed extends React.Component {
+            render() {
+                var confstyle = {
+                    paddingTop: 12,
+                    paddingRight: 16,
+                    paddingBottom: 12,
+                    paddingLeft: 16,
+                    // display:"inlineBlock",    
+                }
+
+                return (
+                    <td style={confstyle}>
+                        {this.props.conf}
+                    </td>
+                )
+            }
+        }
+
+        class Cases_per1M extends React.Component {
+            render() {
+                var casesstyle = {
+                    paddingTop: 12,
+                    paddingRight: 16,
+                    paddingBottom: 12,
+                    paddingLeft: 16,
+                    // display:"inlineBlock"    
+                }
+
+                return (
+                    <td style={casesstyle}>
+                        {this.props.cpm}
+                    </td>
+                )
+            }
+        }
+
+        class Recovered extends React.Component {
+            render() {
+                var recoveredstyle = {
+                    paddingTop: 12,
+                    paddingRight: 16,
+                    paddingBottom: 12,
+                    paddingLeft: 16,
+                    // display:"inlineBlock"    
+                }
+
+                return (
+                    <td style={recoveredstyle}>
+                        {this.props.r}
+                    </td>
+                )
+            }
+        }
+
+        class Deaths extends React.Component {
+            render() {
+                var deathsstyle = {
+                    paddingTop: 12,
+                    paddingRight: 16,
+                    paddingBottom: 12,
+                    paddingLeft: 16,
+                    // display:"inlineBlock"                   
+                }
+
+                return (
+                    <td style={deathsstyle}>
+                        {this.props.d}
+                    </td>
+                )
+            }
+        }
+
+
+
+
+        class TableComponent extends React.Component {
+            render() {
+
+                var dataRows = this.props.data;
+                // var dataColumns=['cname','ccases','ccasespm','totalrecovered','totaldeaths']
+
+                var rowstyle = {
+                    borderTop: "1px solid",
+                    display: "inlineBlock"
+                }
+
+
+                var tableHeaders = (
+                    <thead>
+                        <tr>
+                            <th> Locations </th>
+                            <th> Confirmed </th>
+                            <th> Cases per 1M people   </th>
+                            <th> Recovered </th>
+                            <th> Deaths </th>
+
+                        </tr>
+                    </thead>
+                );
+
+                var tableBody = dataRows.map(function (row) {
+                    return (
+
+                        <tr style={rowstyle}>
+                            <Location loc={row.cname} flag={row.flaglogo} />
+                            <Confirmed conf={row.ccases} />
+                            <Cases_per1M cpm={row.ccasespm} />
+                            <Recovered r={row.totalrecovered} />
+                            <Deaths d={row.totaldeaths} />
+
+                        </tr>
+                    );
+                });
+
+                return (<table class='tableclass'>
+                    {tableHeaders}
+                    <tbody>
+                        {tableBody}
+                    </tbody>
+                </table>
+
+                );
+            }
+        }
+
+
+
+        var rowData = []
+        var destination = document.querySelector("#innercontainer")
+        {% for item in query_results %}
+        var san = {
+            'cname': "{{item.country_name}}",
+            'ccases': "{{ item.confirmed_cases }}",
+            'ccasespm': "{{ item.cases_per_million }}",
+            'totalrecovered': "{{item.total_recovered}}",
+            'totaldeaths': "{{item.total_deaths}}",
+            'flaglogo': "{{item.url}}"
+        }
+        rowData.push(san)
+        {% endfor %}
+
+
+        ReactDOM.render(
+            <TableComponent data={rowData} />,
+            destination
+        );
+
+
+
+    </script>
+
+
+</body>
+
+</html>

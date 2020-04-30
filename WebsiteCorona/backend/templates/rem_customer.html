@@ -1,0 +1,44 @@
+{% load static %}
+<!DOCTYPE html>  
+<html lang="en">  
+<head>  
+    <meta charset="UTF-8">  
+    <title>Unsubscribe</title>
+	<link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
+	<!-- <link href="{% static "nav.css" %}" rel="stylesheet"> -->
+	<!-- <link href="{% static "form.css" %}" rel="stylesheet"> -->
+	<link rel="stylesheet" type="text/css" href="{% static 'css/nav.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/form.css' %}">
+
+	
+</head>
+{% include "navbar.html" %}
+<body>
+<form method="POST" class="post-form" enctype="multipart/form-data">{% csrf_token %}  
+        {{ form.as_p }}  
+        <button type="submit" class="btn">Unsubscribe</button> 
+        {% if messages %}
+		<ul id ="successMessage" class="messages">
+		    {% for message in messages %}
+		    <li{% if message.tags %} class="{{ message.tags }}"{% endif %} style="color:green; font-size: 20px; list-style-type: none;">{{ message }}</li>
+		    {% endfor %}
+		</ul>
+		{% endif %}
+</form>  
+
+
+<script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
+
+<script text="javascript">
+    setTimeout(fade_out, 1000);
+    function fade_out() {
+        $(".messages").fadeOut().empty();
+    }
+    $(".post-form")[0].reset(); // this is to reset the form 
+</script>
+
+</body>  
+</html>  

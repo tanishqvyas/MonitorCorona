@@ -1,0 +1,160 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+  
+<head>
+  <meta charset="utf-8">
+  <title>Corona Tracker</title>
+  <style>
+
+h1
+{
+	text-align: center;
+	color:#ffca7c;
+	margin-top: 40px;
+}
+
+.linkdesc
+{
+	font-size: 20px;
+	color:#f98f45;
+	margin-left:2.5%;
+}
+
+.box 
+{
+	font-family: 'Poppins' , sans-serif;
+	margin: 0 50px 100px 50px;
+}
+
+.name
+{
+	text-align:center;
+	font-family: 'Poppins' , sans-serif;
+	font-size: 20px;
+	font-weight: bold;
+	color:#ffca7c;
+}
+
+.card
+{
+	height:200px;
+	width:20%;
+	margin:20px 2.5% 0 2.5%;
+	display:inline-block;
+	padding:0;
+}
+
+.links
+{
+    font-size: 20px;
+    margin-left:2.5%;
+    text-decoration:none;
+    color:#f4f4f4
+}
+
+.photo
+{
+	display:block;
+	margin:auto;
+	margin-bottom:20px;
+	border-radius:100%;
+	border: 2px solid black;
+	height: 200px;
+	width: 200px;
+}
+
+.footer
+{
+	padding: 20px;
+	font-size: 20px;
+	position: fixed;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	background-color: #1e847f;
+	color:#f4f4f4;
+	font-weight: bold;
+	text-align: center;
+}
+
+  </style>
+<link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/nav.css' %}">
+  <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+  	<script type="text/babel">
+	var dest = document.querySelector("#container");
+
+	class Link extends React.Component{
+        render(){
+        	return(
+		<div>
+		<p className='linkdesc'>{this.props.text}</p>
+		<a className='link' target="_blank"href={this.props.link}>{this.props.link}</a>
+		</div>
+	  );
+        }
+      }
+
+	class Card extends React.Component{
+        render(){
+        	return(
+			<div className='card'>
+			<img className="photo" src={this.props.src} alt='photo'/>
+			<div className="name">{this.props.text}</div>
+			<div className="name">{this.props.srn}</div>	
+			</div>
+	  		);
+        }
+      }
+     class Footer extends React.Component{
+		 render(){
+			 return(
+				 <footer className='footer'>
+					Contact us: {this.props.ph}  |  Email us at : {this.props.id}
+				 </footer>
+			 )
+		 }
+	 }
+      ReactDOM.render(
+        <div className='box'>
+		<div className='section'>
+			<h1>Other Sites</h1>
+				<Link link="https://www.covid19india.org/"></Link>
+				<Link link="https://google.com/covid19-map/?hl=en"></Link>
+				<Link link="https://www.worldometers.info/coronavirus/"></Link>
+				<Link link="https://www.bing.com/covid"></Link>
+				<Link link="https://www.who.int/india/emergencies/novel-coronavirus-2019"></Link>
+		</div>
+		<div className='section'>
+			<h1>Emergency links</h1>
+				<Link text='HELPLINE NUMBERS [BY STATE]' link="https://www.mohfw.gov.in/pdf/coronvavirushelplinenumber.pdf"></Link>
+				<Link text='MINISTRY OF HEALTH AND FAMILY WELFARE, GOV. OF INDIA' link="https://www.mohfw.gov.in/"></Link>
+				<Link text='WHO: COVID-19 HOME PAGE' link="https://www.who.int/emergencies/diseases/novel-coronavirus-2019"></Link>
+				<Link text='CDC' link="https://www.cdc.gov/coronavirus/2019-ncov/faq.html"></Link>
+		</div>
+		<div className='section'>
+			<h1>Project by</h1>
+            	<Card src="{% static '1.jpeg' %}" text='SAI TEJAS G S' srn='PES1201801542'></Card>
+				<Card src="{% static 'ap.jpeg' %}" text='APARNA GOPALAKRISHNAN' srn='PES1201801458'></Card>
+				<Card src="{% static 'sb.jpeg' %}" text='SANTOSH BISHNOI' srn='PES1201801998'></Card>
+				<Card src="{% static 'tv.jpg' %}" text='TANISHQ VYAS' srn='PES1201800125'></Card>
+		</div>
+		<Footer ph='+91-8839168758' id='fansforevah@gmail.com'></Footer>
+        </div>
+        ,dest
+      )
+
+    </script>
+  </style>
+</head>
+{% include "navbar.html" %}
+<body style="background-color: #2F4F4F">
+  <div id="container">
+    
+  </div>
+</body>
+  
+</html>
