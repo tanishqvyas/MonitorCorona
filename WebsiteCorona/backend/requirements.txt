@@ -17,7 +17,7 @@ django-cors-headers==3.2.1
 django-crontab==0.7.1
 django-phone-field==1.8.0
 django-phonenumber-field==4.0.0
-djangorestframework==3.11.0
+djangorestframework==3.11.2
 Fiona==1.8.13.post1
 geopandas==0.7.0
 html5lib==1.0.1
