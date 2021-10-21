@@ -2,7 +2,7 @@ amqp==1.4.9
 anyjson==0.3.3
 asgiref==3.2.7
 attrs==19.3.0
-Babel==2.8.0
+Babel==2.9.1
 beautifulsoup4==4.9.0
 billiard==3.3.0.23
 celery==3.1.26.post2
